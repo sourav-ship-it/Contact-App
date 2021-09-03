@@ -1,0 +1,9 @@
+.contact-form {
+    background-color: white;
+    position: fixed;
+    width: 50%;
+    z-index: 1001;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
