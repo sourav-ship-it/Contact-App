@@ -8,27 +8,21 @@ import { updateList } from '../utils/actions'
 class ContactList extends Component {
     state = {
         selectedIndex: null,
-        // list: this.returnList(),
         contactFormModal: false
     }
 
-    // returnList() {
-    //     if(localStorage.getItem('contacts') == null)
-    //         localStorage.setItem('contacts',JSON.stringify([]))
-    //     return JSON.parse(localStorage.getItem('contacts'))
-    // }
-
     onAddorEdit = (data) => {
-        this.setState({contactFormModal: false})
-        let list = [...this.props.list]
-        if(this.state.selectedIndex != -1){
-            list[this.state.selectedIndex] = data
-        }else{
-            list.push(data)
+        if(data.contactName && data.contactNumber && data.contactEmail){
+            this.setState({contactFormModal: false})
+            let list = [...this.props.list]
+            if(this.state.selectedIndex != -1){
+                list[this.state.selectedIndex] = data
+            }else{
+                list.push(data)
+            }
+
+            this.props.updateList(list)
         }
-        // localStorage.setItem('contacts',JSON.stringify(list))
-        // this.setState({list})
-        this.props.updateList(list)
     }
 
     renderModal() {
@@ -44,11 +38,17 @@ class ContactList extends Component {
             }
             return (
             <div>
-                <div className='overlay'></div>
+                <div className='overlay'>
+                <button className='close-button' onClick={() => this.closeModal()}><i className="fa fa-times" aria-hidden="true"></i></button>
+                </div>
                 <ContactForm onAddorEdit={this.onAddorEdit} contact={contact}/>
             </div>
             );
         }
+    }
+
+    closeModal = () => {
+        this.setState({contactFormModal: false})
     }
 
     displayContactForm = i => {
@@ -59,10 +59,7 @@ class ContactList extends Component {
     deleteContact = i => {
         let list = [...this.props.list]
         list.splice(i , 1)
-        // this.setState({list: list})
-        // localStorage.setItem('contacts',JSON.stringify(list))
         this.props.updateList(list)
-        console.log(list)
 
     }
 
@@ -70,8 +67,9 @@ class ContactList extends Component {
         return (
             <div>
                 {this.renderModal()}
-                <div style={{background: 'white', borderRadius: '20px', padding: '30px', width: '50%', margin: 'auto'}}>
-                    <button className='add-button' onClick={() => this.displayContactForm(-1)}><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <div style={{background: 'white', borderRadius: '20px', padding: '30px', width: '50%', margin: 'auto', marginTop: '20px'}}>
+                    <h1 style={{textAlign: 'center'}}>CONTACTS</h1>
+                    <button className='add-button' onClick={() => this.displayContactForm(-1)}><i className="fa fa-plus" aria-hidden="true"></i></button>
                     {
                         this.props.list.map((item,index) => {
                             return <ContactCard editContact={this.displayContactForm} contact={item} key={index} contactId={index} deleteContact={this.deleteContact}/>

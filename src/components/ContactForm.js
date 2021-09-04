@@ -39,9 +39,10 @@ class ContactForm extends Component {
     render() {
         return (
             <form className='contact-form' onSubmit = {this.handleSubmit} autoComplete="off">
-                <input name="contactName" placeholder="Contact Name" value={this.state.contactName} onChange = {this.handleInputChange} /><br/>
-                <input name="contactNumber" placeholder="Contact Phone Number" value={this.state.contactNumber} onChange = {this.handleInputChange} /><br/>
-                <input name="contactEmail" placeholder="Contact Email Id" value={this.state.contactEmail} onChange = {this.handleInputChange} /><br/>
+                <input type="text" name="contactName" placeholder="Contact Name" value={this.state.contactName} onChange = {this.handleInputChange} /><br/>
+                <input type="text" name="contactNumber" placeholder="Contact Phone Number" value={this.state.contactNumber} onChange = {this.handleInputChange} /><br/>
+                <input type="text" name="contactEmail" placeholder="Contact Email Id" value={this.state.contactEmail} onChange = {this.handleInputChange} /><br/>
+                <p style={{padding:'10px 0', margin: '0'}}>Upload a Photo</p>
                 <input type="file" onChange = {this.handleImageUpload} /><br/>
                 <button type="submit">Submit</button>
             </form>
