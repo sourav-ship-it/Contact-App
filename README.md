@@ -1,6 +1,14 @@
-# Getting Started with Create React App
+# Contact Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a Contact application with CRUD operations.
+
+## Functionalities
+
+To add a contact the user has to enter the contact name, contact number, contact email-id and contact photo out of which contact name, contact number and contact email-id are mandatory.
+
+The user can also edit the added contacts by clicking the edit button.
+
+The user can delete added contacts by clicking the delete button.
 
 ## Available Scripts
 
